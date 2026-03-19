@@ -82,11 +82,14 @@ const mergeObjects = (base, source) => {
   return result
 }
 
+export const hasLocalData = () => {
+  return localStorage.getItem(STORAGE_KEY) !== null
+}
+
 export const getSiteData = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY)
     if (!saved) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(defaultSiteData))
       return defaultSiteData
     }
 

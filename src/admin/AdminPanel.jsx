@@ -26,6 +26,19 @@ function AdminPanel({ siteData, onSaveSiteData }) {
     setSaveNotice('Saved changes successfully.')
   }
 
+  const publishChanges = () => {
+    onSaveSiteData(draft)
+    const json = JSON.stringify(draft, null, 2)
+    const blob = new Blob([json], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'site-config.json'
+    a.click()
+    URL.revokeObjectURL(url)
+    setSaveNotice('Config downloaded! Replace public/site-config.json, commit and push to deploy to all visitors.')
+  }
+
   const restoreDefaults = () => {
     const defaults = resetSiteData()
     onSaveSiteData(defaults)
@@ -119,6 +132,13 @@ function AdminPanel({ siteData, onSaveSiteData }) {
               </button>
               <button
                 type="button"
+                onClick={publishChanges}
+                className="rounded-full bg-emerald-700 px-5 py-2 text-sm font-semibold text-white transition hover:bg-emerald-800"
+              >
+                Publish Changes
+              </button>
+              <button
+                type="button"
                 onClick={restoreDefaults}
                 className="rounded-full border border-slate-300 px-5 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
               >
@@ -126,7 +146,12 @@ function AdminPanel({ siteData, onSaveSiteData }) {
               </button>
             </div>
           </div>
-          {saveNotice ? <p className="mt-3 text-sm font-semibold text-emerald-700">{saveNotice}</p> : null}
+          {saveNotice ? (
+            <p className="mt-3 text-sm font-semibold text-emerald-700">{saveNotice}</p>
+          ) : null}
+          <div className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <strong>How to publish to all visitors:</strong> Click <em>Publish Changes</em> → it downloads <code>site-config.json</code> → replace <code>public/site-config.json</code> in your repo → commit &amp; push → Render redeploys → every new visitor sees your updated content.
+          </div>
         </div>
 
         <div className="grid gap-6">

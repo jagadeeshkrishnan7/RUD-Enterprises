@@ -1,0 +1,44 @@
+{
+  "companyName": "RUD Enterprises",
+  "hero": {
+    "heading": "Engineered Fabrication for Demanding Industries",
+    "subheading": "We design, build, and deliver precision metal fabrication programs for energy, logistics, and industrial automation leaders.",
+    "image": "https://images.unsplash.com/photo-1581092588427-7f89d4ea796d?auto=format&fit=crop&w=1800&q=80"
+  },
+  "contact": {
+    "header": "Speak With Our Fabrication Specialists",
+    "description": "Tell us about your project and timeline. Our engineering team will review your requirements and respond with next steps.",
+    "recipientEmail": "inquiries@rudenterprises.com"
+  },
+  "footer": {
+    "address": "85 Industrial Corridor, Houston, TX 77032",
+    "emails": ["info@rudenterprises.com", "sales@rudenterprises.com"],
+    "phones": ["+1 (713) 555-0143", "+1 (713) 555-0188"]
+  },
+  "homeSections": [
+    {
+      "id": "section-1",
+      "title": "Heavy-Duty Structure Manufacturing",
+      "description": "From CNC plasma cutting through robotic welding and final coating, our production line is optimized for repeatable quality across high-volume structural components. Each part is inspected with digital QA checkpoints to ensure strict dimensional compliance and long-term durability in aggressive environments.",
+      "image": "https://images.unsplash.com/photo-1531058020387-3be344556be6?auto=format&fit=crop&w=1200&q=80"
+    },
+    {
+      "id": "section-2",
+      "title": "Turnkey Assembly Programs",
+      "description": "Our cross-functional teams handle the complete lifecycle of custom fabricated assemblies, including prototyping, sourcing, machining, welding, and kitting. Dedicated account management and transparent production milestones keep your launch schedule predictable and your stakeholders informed at every stage.",
+      "image": "https://images.unsplash.com/photo-1565008447742-97f6f38c985c?auto=format&fit=crop&w=1200&q=80"
+    }
+  ],
+  "about": {
+    "header": "Built on Craftsmanship, Driven by Process Excellence",
+    "description": "RUD Enterprises combines deep manufacturing expertise with modern process control to deliver high-performing components at scale. Our facilities are equipped for complex fabrication, while our project teams prioritize quality, safety, and responsiveness from kickoff through final shipment.",
+    "images": [
+      "https://images.unsplash.com/photo-1581092160607-ee22731f89c9?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1581092921461-eab10380d98a?auto=format&fit=crop&w=1200&q=80"
+    ]
+  },
+  "theme": {
+    "backgroundColor": "#eef3f1",
+    "primaryColor": "#0f766e"
+  }
+}
