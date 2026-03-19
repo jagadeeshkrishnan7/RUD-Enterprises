@@ -27,8 +27,9 @@ function AdminPanel({ siteData, onSaveSiteData }) {
   }
 
   const publishChanges = () => {
-    onSaveSiteData(draft)
-    const json = JSON.stringify(draft, null, 2)
+    const versioned = { ...draft, _version: Date.now() }
+    onSaveSiteData(versioned)
+    const json = JSON.stringify(versioned, null, 2)
     const blob = new Blob([json], { type: 'application/json' })
     const url = URL.createObjectURL(blob)
     const a = document.createElement('a')

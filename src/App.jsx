@@ -2,24 +2,34 @@ import { useEffect, useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import AdminPanel from './admin/AdminPanel'
 import HomePage from './pages/HomePage'
-import { defaultSiteData, getSiteData, hasLocalData, saveSiteData } from './utils/storage'
+import { defaultSiteData, getSiteData, saveSiteData } from './utils/storage'
 
 function App() {
   const [siteData, setSiteData] = useState(() => getSiteData())
 
-  // On first visit (no localStorage yet), seed content from the published site-config.json
+  // Always fetch site-config.json on load.
+  // If the remote _version is newer than what's stored locally, update everyone automatically.
+  // This ensures all visitors get the latest published content after a redeploy.
   useEffect(() => {
-    if (hasLocalData()) return
-    fetch('/site-config.json')
+    fetch('/site-config.json?t=' + Date.now())
       .then((r) => r.json())
       .then((remote) => {
-        const merged = { ...defaultSiteData, ...remote }
-        saveSiteData(merged)
-        setSiteData(merged)
+        const local = getSiteData()
+        const remoteVersion = remote._version ?? 0
+        const localVersion = local._version ?? 0
+        if (remoteVersion > localVersion) {
+          const merged = { ...defaultSiteData, ...remote }
+          saveSiteData(merged)
+          setSiteData(merged)
+        } else if (localVersion === 0) {
+          // First ever visit with no version — seed from remote
+          const merged = { ...defaultSiteData, ...remote }
+          saveSiteData(merged)
+          setSiteData(merged)
+        }
       })
       .catch(() => {
-        // No remote config — fall back to hardcoded defaults and persist them
-        saveSiteData(defaultSiteData)
+        // No remote config available — local/default data already loaded
       })
   }, [])
 
